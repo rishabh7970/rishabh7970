@@ -1,69 +1,144 @@
-<h1 align="center">Hi, I'm Rishabh 👋</h1>
+<div align="center">
 
-<h3 align="center">Full-Stack Developer building AI-powered systems, real-time platforms, and clean web experiences</h3>
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=26&duration=3000&pause=1000&color=F7941D&center=true&vCenter=true&width=600&lines=Hi%2C+I'm+Rishabh+%F0%9F%91%8B;Full-Stack+Developer;AI+%2F+Agent+Systems+Builder;I+ship+things+that+actually+run." alt="Typing SVG" />
 
-<p align="center">
-  <a href="https://www.linkedin.com/in/rishabhsharma2507">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a>
-  <a href="mailto:rishabh.s2507@gmail.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
-  </a>
-</p>
+<br/>
 
----
+<a href="https://www.linkedin.com/in/rishabhsharma2507">
+  <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
+</a>
+<a href="mailto:rishabh.s2507@gmail.com">
+  <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+</a>
+<img src="https://komarev.com/ghpvc/?username=rishabh7970&style=for-the-badge&color=F7941D&label=PROFILE+VIEWS" />
 
-### About Me
+</div>
 
-I build end-to-end systems — from React/TypeScript frontends to Python backends wired up with real AI (LangGraph agent pipelines, local LLMs via Ollama) and real infrastructure (Kafka-based observability pipelines). I like projects that actually work end-to-end, not just demos: live data, real error handling, real trade-offs documented along the way.
+<br/>
 
-- 🔭 Currently building **multi-agent AI systems** using LangGraph and local LLMs
-- 🌱 Deepening my knowledge of **real-time data pipelines** (Kafka, WebSockets) and **observability tooling**
-- 💬 Ask me about React/TypeScript, FastAPI, LangGraph, or full-stack architecture
-- 📫 Open to **full-stack / AI engineering** opportunities
+## Engineering philosophy
 
----
+I'd rather show three real trade-offs than list twenty buzzwords, so here's what actually shows up in my repos:
 
-### 🛠️ Tech Stack
-
-<p align="left">
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
-  <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" />
-  <img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" />
-  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
-  <img src="https://img.shields.io/badge/Kafka-231F20?style=flat-square&logo=apachekafka&logoColor=white" />
-  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=flat-square&logo=tensorflow&logoColor=white" />
-  <img src="https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white" />
-  <img src="https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white" />
-</p>
+- **I avoid fragile dependencies on purpose.** My candlestick-pattern engine is hand-built in pandas instead of wrapping TA-Lib, because TA-Lib needs a compiled C toolchain that breaks silently across platforms — a rule-based reimplementation is more code but zero install risk.
+- **I design for graceful degradation, not just the happy path.** My AI agent pipeline's LLM narrative step is fully optional and fails clean — if the local model isn't running (or the machine can't handle it), the rest of the pipeline still returns complete, correct results instead of crashing.
+- **I care about correctness assumptions, not just correctness.** My backtesting engine deliberately excludes fundamentals/sentiment from historical scoring — because scoring the past using *today's* data is look-ahead bias, and a backtest built on that would look great and mean nothing.
 
 ---
 
-### 🚀 Featured Projects
+## 🚀 Featured Work
 
-| Project | What it does |
-|---|---|
-| 🤖 **[Stock_Market_Analysis](https://github.com/rishabh7970/Stock_Market_Analysis)** | AI-powered stock research platform (US/crypto/Indian markets) — a real **LangGraph multi-agent pipeline**, Monte Carlo forecasting, candlestick pattern detection, and historical backtesting, running entirely on free self-hosted infra (FastAPI + React + Ollama). |
-| 📊 **[Log-Observability-Monitoring-System](https://github.com/rishabh7970/Log-Observability-Monitoring-System)** | End-to-end observability platform for 3DEXPERIENCE — real-time log ingestion, **Kafka**-based stream processing, and interactive React dashboards. |
-| 🐶 **[Dog-Breed-Classification](https://github.com/rishabh7970/Dog-Breed-Classification)** | Deep learning image classifier (TensorFlow) that identifies dog breeds from a single photo. |
-| 🏭 **[Saggi_Tech](https://github.com/rishabh7970/Saggi_Tech)** | Production business website for an ISO 9001:2015 certified sheet metal fabrication company — client-facing, real-world deployment. |
+<details open>
+<summary><b>🤖 Stock_Market_Analysis</b> — AI-powered multi-market research platform</summary>
+<br/>
+
+A full-stack research platform for US, crypto, and Indian (NSE/BSE) markets — built to be genuinely useful, not a portfolio toy.
+
+- **Real LangGraph multi-agent pipeline** (not a single prompt pretending to be agents): technical → sentiment → fundamental agents feed a risk-manager node that weights them differently by investment horizon, with an optional local-LLM narrative step via **Ollama**
+- **Monte Carlo (GBM) price simulation** instead of a single ARIMA point forecast — ARIMA collapses to a near-straight line a few steps out; simulating 500 random paths shows the real spread of plausible outcomes
+- **20 candlestick patterns detected from raw OHLC math** — zero compiled dependencies
+- **Walk-forward backtesting engine** that validates whether the scoring methodology has *actually* preceded better returns historically, explicitly designed to avoid look-ahead bias
+- **Zero paid APIs**: Finnhub WebSockets for US/crypto, a free `yfinance`-based poller for Indian markets, local sentiment analysis (VADER), all self-hosted
+
+`FastAPI` `LangGraph` `LangChain` `Ollama` `React` `TypeScript` `WebSockets` `pandas`
+
+**[→ View Repository](https://github.com/rishabh7970/Stock_Market_Analysis)**
+
+</details>
+
+<details>
+<summary><b>📊 Log-Observability-Monitoring-System</b> — Real-time observability platform</summary>
+<br/>
+
+End-to-end log observability for the 3DEXPERIENCE platform — real-time ingestion, Kafka-based stream processing, and interactive React dashboards for live monitoring.
+
+`Kafka` `JavaScript` `React` `Real-time Data Pipelines`
+
+**[→ View Repository](https://github.com/rishabh7970/Log-Observability-Monitoring-System)**
+
+</details>
+
+<details>
+<summary><b>🐶 Dog-Breed-Classification</b> — Deep learning image classifier</summary>
+<br/>
+
+A TensorFlow deep learning model that identifies dog breeds from a single photo — end-to-end from data pipeline to trained model.
+
+`TensorFlow` `Python` `Deep Learning` `Jupyter`
+
+**[→ View Repository](https://github.com/rishabh7970/Dog-Breed-Classification)**
+
+</details>
+
+<details>
+<summary><b>🏭 Saggi_Tech</b> — Production client website</summary>
+<br/>
+
+Live business website for an ISO 9001:2015 certified sheet metal fabrication company — real client, real deployment, real requirements.
+
+`TypeScript` `React`
+
+**[→ View Repository](https://github.com/rishabh7970/Saggi_Tech)**
+
+</details>
 
 ---
 
-### 📊 GitHub Stats
+## 🛠️ Tech Stack
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=rishabh7970&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="Rishabh's GitHub Stats" height="165"/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=rishabh7970&theme=tokyonight&hide_border=true" alt="Rishabh's GitHub Streak" height="165"/>
-</p>
+<table>
+<tr>
+<td valign="top" width="33%">
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rishabh7970&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages" height="165"/>
-</p>
+**Languages**
+<br/>
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" /><br/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" /><br/>
+<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
+
+</td>
+<td valign="top" width="33%">
+
+**Frontend / Backend**
+<br/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" /><br/>
+<img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" /><br/>
+<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white" /><br/>
+<img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
+
+</td>
+<td valign="top" width="33%">
+
+**AI / Data / Infra**
+<br/>
+<img src="https://img.shields.io/badge/LangGraph-1C3C3C?style=flat-square&logo=langchain&logoColor=white" /><br/>
+<img src="https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white" /><br/>
+<img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=flat-square&logo=tensorflow&logoColor=white" /><br/>
+<img src="https://img.shields.io/badge/Kafka-231F20?style=flat-square&logo=apachekafka&logoColor=white" />
+
+</td>
+</tr>
+</table>
 
 ---
 
-<p align="center"><i>Thanks for stopping by — feel free to explore my repos or reach out!</i></p>
+## 📊 GitHub Stats
+
+<div align="center">
+<img src="https://github-readme-stats.vercel.app/api?username=rishabh7970&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" height="165"/>
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=rishabh7970&theme=tokyonight&hide_border=true" height="165"/>
+</div>
+
+<div align="center">
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rishabh7970&layout=compact&theme=tokyonight&hide_border=true" height="150"/>
+</div>
+
+<div align="center">
+<img src="https://github-profile-trophy.vercel.app/?username=rishabh7970&theme=tokyonight&no-frame=true&row=1&column=6" />
+</div>
+
+---
+
+<div align="center">
+<i>Building things that solve real problems, one commit at a time. Open to full-stack / AI engineering roles — let's talk.</i>
+</div>
