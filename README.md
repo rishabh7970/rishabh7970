@@ -16,15 +16,6 @@
 
 <br/>
 
-## Engineering philosophy
-
-I'd rather show three real trade-offs than list twenty buzzwords, so here's what actually shows up in my repos:
-
-- **I avoid fragile dependencies on purpose.** My candlestick-pattern engine is hand-built in pandas instead of wrapping TA-Lib, because TA-Lib needs a compiled C toolchain that breaks silently across platforms — a rule-based reimplementation is more code but zero install risk.
-- **I design for graceful degradation, not just the happy path.** My AI agent pipeline's LLM narrative step is fully optional and fails clean — if the local model isn't running (or the machine can't handle it), the rest of the pipeline still returns complete, correct results instead of crashing.
-- **I care about correctness assumptions, not just correctness.** My backtesting engine deliberately excludes fundamentals/sentiment from historical scoring — because scoring the past using *today's* data is look-ahead bias, and a backtest built on that would look great and mean nothing.
-
----
 
 ## 🚀 Featured Work
 
